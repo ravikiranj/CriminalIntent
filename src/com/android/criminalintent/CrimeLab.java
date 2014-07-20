@@ -1,6 +1,7 @@
 package com.android.criminalintent;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,13 @@ import java.util.UUID;
 public class CrimeLab {
     private Context m_appContext;
     private List<Crime> m_crimeList;
+    public static final String TAG = "CrimeLab";
 
     private CrimeLab()
     {
         m_crimeList = new ArrayList<Crime>();
         _fillCrimeList();
     }
-
 
     private static class SingletonHolder {
         private static final CrimeLab INSTANCE = new CrimeLab();
@@ -44,7 +45,7 @@ public class CrimeLab {
     {
         for (Crime c : m_crimeList)
         {
-            if (c.getId() == id)
+            if (c.getId().equals(id))
             {
                 return c;
             }
@@ -54,12 +55,14 @@ public class CrimeLab {
 
     public void _fillCrimeList()
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 3; i++)
         {
             Crime c = new Crime();
             c.setTitle("Crime #" + String.valueOf(i));
             c.setIsSolved(i % 2 == 0);
             m_crimeList.add(c);
+            Log.d(TAG, "Crime  Id = " + c.getId());
         }
     }
+
 }

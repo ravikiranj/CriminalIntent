@@ -55,4 +55,10 @@ public class Crime
     {
         this.m_isSolved = m_isSolved;
     }
+
+    @Override
+    public String toString()
+    {
+        return m_title;
+    }
 }
